@@ -1,0 +1,43 @@
+package za.ac.cput.chapte51.structuraldesignpatterns.adapter;
+
+/**
+ * Created by student on 2015/03/09.
+ */
+public class WeightObject implements WeightDetails {
+
+    Weight weight = null;
+
+    public WeightObject(){
+        weight = new Weight();
+    }
+
+    @Override
+    public int getWeightInLbs() {
+        return toLbs(weight.getWeight());
+    }
+
+    @Override
+    public void setWeightInLbs(int weightInLbs) {
+        weight.setWeight(toKg(weightInLbs));
+    }
+
+    @Override
+    public int getWeightInKg() {
+        return weight.getWeight();
+    }
+
+    @Override
+    public void setWeightInKg(int weightInKg) {
+        weight.setWeight(weightInKg);
+    }
+
+    private int toKg(int weightInLbs) {
+        double w = weightInLbs * 0.453;
+        return (int)w;
+    }
+
+    private int toLbs(int weightInKg) {
+        double w = weightInKg * 2.204;
+        return (int)w;
+    }
+}
